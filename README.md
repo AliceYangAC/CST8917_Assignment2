@@ -336,7 +336,7 @@ Both Azure Event Hubs and Amazon Kinesis scale to millions of events per second,
 - AWS remains the premier choice for organizations requiring the most granular infrastructure control, the broadest service ecosystem, and the highest global scale [1].
 - GCP is the clear leader for cloud-native organizations prioritizing Kubernetes-native networking, advanced data analytics, and cost-effective AI model training through custom machine types [10].
 
-## 9. References
+## References (IEEE)
 
 [1] N. Ahmad and L. Millares, "AWS vs Azure vs Google Cloud: Key Features and Pricing," Channel Insider, originally published Oct. 2024, updated Dec. 2025. [Online]. Available: [https://www.channelinsider.com/infrastructure/aws-vs-azure-vs-google-cloud/](https://www.channelinsider.com/infrastructure/aws-vs-azure-vs-google-cloud/)
 
