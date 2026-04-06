@@ -65,14 +65,14 @@ Without robust orchestration, distributed architectures risk becoming "distribut
 
 ### Core Features
 
-| Feature               | Azure Durable Functions                                   | AWS Step Functions                                 | GCP Workflows                  |
-| --------------------- | --------------------------------------------------------- | -------------------------------------------------- | ------------------------------ |
-| Definition Style      | Code (C#, Python, JS, Java) [8]                           | JSON/YAML state machine (ASL) + SDK [1]            | YAML/JSON syntax [1]           |
-| Chaining              | Yes: `yield context.call_activity()` [8]                  | Yes: Sequential state transitions [1]              | Yes: Sequential step calls [1] |
-| Fan-out / Fan-in      | Yes: `Task.WhenAll()` with `call_activity_with_retry` [8] | Yes: Map state (parallel iterations) [1]           | Yes: Parallel branches [1]     |
-| Human Approval / Wait | Yes: External events + `wait_for_external_event()` [8]    | Yes: Wait for task token (`.waitForTaskToken`) [1] | Yes: Callback endpoints [1]    |
-| State Persistence     | Azure Storage (queues + tables) or Netherite backend [8]  | Managed by AWS (Standard: 90-day history) [1]      | Managed by GCP [1]             |
-| Long-Running Support  | Unlimited (timer-based replay) [8]                        | Standard: up to 1 year; Express: 5 minutes [1]     | Up to 1 year [1]               |
+| Feature               | Azure Durable Functions                                    | AWS Step Functions                                 | GCP Workflows                  |
+| --------------------- | ---------------------------------------------------------- | -------------------------------------------------- | ------------------------------ |
+| Definition Style      | Code (C#, Python, JS, Java) [8]                            | JSON/YAML state machine (ASL) and SDK [1]          | YAML/JSON syntax [1]           |
+| Chaining              | Yes: `yield context.call_activity()` [8]                   | Yes: Sequential state transitions [1]              | Yes: Sequential step calls [1] |
+| Fan-out / Fan-in      | Yes: `Task.WhenAll()` with `call_activity_with_retry` [8]  | Yes: Map state (parallel iterations) [1]           | Yes: Parallel branches [1]     |
+| Human Approval / Wait | Yes: External events and `wait_for_external_event()` [8]   | Yes: Wait for task token (`.waitForTaskToken`) [1] | Yes: Callback endpoints [1]    |
+| State Persistence     | Azure Storage (queues and tables) or Netherite backend [8] | Managed by AWS (Standard: 90-day history) [1]      | Managed by GCP [1]             |
+| Long-Running Support  | Unlimited (timer-based replay) [8]                         | Standard: up to 1 year; Express: 5 minutes [1]     | Up to 1 year [1]               |
 
 ### Integration Options
 
@@ -88,10 +88,10 @@ Without robust orchestration, distributed architectures risk becoming "distribut
 
 ### Pricing Model
 
-|           | Azure Durable Functions                                             | AWS Step Functions                                                             | GCP Workflows                                  |
-| --------- | ------------------------------------------------------------------- | ------------------------------------------------------------------------------ | ---------------------------------------------- |
-| Model     | Included in Azure Functions consumption billing + storage costs [8] | Standard: per state transition; Express: per execution duration + requests [1] | Per internal step + per external HTTP call [1] |
-| Free Tier | Inherits Functions free tier [8]                                    | Standard: 4,000 state transitions/month; Express: 1M requests/month [1]        | 5,000 internal steps/month [1]                 |
+|           | Azure Durable Functions                                               | AWS Step Functions                                                               | GCP Workflows                                    |
+| --------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------ |
+| Model     | Included in Azure Functions consumption billing and storage costs [8] | Standard: per state transition; Express: per execution duration and requests [1] | Per internal step and per external HTTP call [1] |
+| Free Tier | Inherits Functions free tier [8]                                      | Standard: 4,000 state transitions/month; Express: 1M requests/month [1]          | 5,000 internal steps/month [1]                   |
 
 ### Strengths & Weaknesses
 
@@ -118,7 +118,7 @@ Logic Apps and its equivalents target business process automation, connecting Sa
 
 ### Core Features
 
-| Feature                  | Azure Logic Apps                                            | AWS Step Functions + EventBridge        | GCP Application Integration                  |
+| Feature                  | Azure Logic Apps                                            | AWS Step Functions and EventBridge      | GCP Application Integration                  |
 | ------------------------ | ----------------------------------------------------------- | --------------------------------------- | -------------------------------------------- |
 | Design Interface         | Visual drag-and-drop designer [8]                           | Visual state machine editor [1]         | Visual designer (Apigee-based) [1]           |
 | Pre-built Connectors     | 200+ (Office 365, SAP, Salesforce, ServiceNow) [8]          | 220+ AWS service integrations [1]       | Google Workspace, Salesforce, ServiceNow [1] |
@@ -129,7 +129,7 @@ Logic Apps and its equivalents target business process automation, connecting Sa
 ### Integration Options
 
 - Logic Apps connects to on-premises systems via the on-premises data gateway, integrates with Azure AD for identity, and supports B2B workflows with EDI/AS2 [8].
-- Step Functions + EventBridge connects to AWS services natively and to external systems via Lambda or HTTP integrations [1].
+- Step Functions and EventBridge connects to AWS services natively and to external systems via Lambda or HTTP integrations [1].
 - GCP Application Integration connects to Google Workspace natively and to third-party SaaS via pre-built connectors or REST/gRPC calls [1].
 
 ### Monitoring & Observability
@@ -193,11 +193,11 @@ Architects must distinguish between messages (intent-based, high-value, requirin
 
 ### Pricing Model
 
-|            | Service Bus                                                            | AWS SQS/SNS                                               | GCP Pub/Sub                         |
-| ---------- | ---------------------------------------------------------------------- | --------------------------------------------------------- | ----------------------------------- |
-| Model      | Standard tier: per operation; Premium tier: fixed messaging units [11] | SQS: pay-per-request; SNS: pay-per-publish + delivery [6] | Pay-per-GB of data [13]             |
-| Free Tier  | Standard: 10M operations/month [11]                                    | SQS: 1M requests/month; SNS: 1M publishes/month [6]       | 10 GB/month [13]                    |
-| Scale Cost | Premium tier predictable for high-throughput workloads [11]            | Very cost-effective at low-to-mid volume [6]              | Competitive at high throughput [13] |
+|            | Service Bus                                                            | AWS SQS/SNS                                                 | GCP Pub/Sub                         |
+| ---------- | ---------------------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------- |
+| Model      | Standard tier: per operation; Premium tier: fixed messaging units [11] | SQS: pay-per-request; SNS: pay-per-publish and delivery [6] | Pay-per-GB of data [13]             |
+| Free Tier  | Standard: 10M operations/month [11]                                    | SQS: 1M requests/month; SNS: 1M publishes/month [6]         | 10 GB/month [13]                    |
+| Scale Cost | Premium tier predictable for high-throughput workloads [11]            | Very cost-effective at low-to-mid volume [6]                | Competitive at high throughput [13] |
 
 ### Strengths & Weaknesses
 
@@ -229,7 +229,7 @@ Event routers operate on the "Something Happened" paradigm, they distribute fact
 | Uptime SLA             | 99.99% [12]                               | Not specified [12]                                      | 99.9% [4]                         |
 | CloudEvents Support    | Yes: [12]                                 | Yes: [12]                                               | Yes: [4]                          |
 | Native Transformation  | No: Requires external Azure Function [11] | Yes: EventBridge Pipes (filter, enrich, route) [15]     | Yes: Transformation pipelines [4] |
-| Event Archive & Replay | No: 24-hour retry window only [12]        | Yes: Archive + replay [15]                              | No: 24-hour retry window [4]      |
+| Event Archive & Replay | No: 24-hour retry window only [12]        | Yes: Archive and replay [15]                            | No: 24-hour retry window [4]      |
 | Partner Events (SaaS)  | Limited [12]                              | Yes: 35+ SaaS partners (Salesforce, Zendesk, etc.) [15] | Limited [4]                       |
 | Event Retention        | 24 hours with retries [12]                | Configurable archive [15]                               | 24 hours with retries [4]         |
 
@@ -254,10 +254,10 @@ Event routers operate on the "Something Happened" paradigm, they distribute fact
 
 ### Strengths & Weaknesses
 
-|            | Event Grid                                                                                | EventBridge                                                                          | GCP Eventarc                                                                     |
-| ---------- | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| Strengths  | Best-in-class 99.99% SLA; native Azure resource event sourcing; CloudEvents standard [12] | Native transformation (Pipes); event archive + replay; 35+ SaaS partner sources [15] | Transformation pipelines; CloudEvents native; strong GCP service integration [4] |
-| Weaknesses | No in-flight transformation (requires Lambda/Function workaround); no event replay [11]   | SLA not explicitly published; complex pricing with Pipes [15]                        | Smaller SaaS partner ecosystem; lower SLA (99.9%) than Event Grid [4]            |
+|            | Event Grid                                                                                | EventBridge                                                                            | GCP Eventarc                                                                     |
+| ---------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Strengths  | Best-in-class 99.99% SLA; native Azure resource event sourcing; CloudEvents standard [12] | Native transformation (Pipes); event archive and replay; 35+ SaaS partner sources [15] | Transformation pipelines; CloudEvents native; strong GCP service integration [4] |
+| Weaknesses | No in-flight transformation (requires Lambda/Function workaround); no event replay [11]   | SLA not explicitly published; complex pricing with Pipes [15]                          | Smaller SaaS partner ecosystem; lower SLA (99.9%) than Event Grid [4]            |
 
 ### Narrative Analysis
 
@@ -283,7 +283,7 @@ High-volume streaming platforms are distinct from messaging and event routing se
 | Partitioning Model  | Partitions (1–32 standard; up to 2000 Premium) [14] | Shards (manual scaling) [9]                       | Topics with automatic partitioning [13]        |
 | Kafka Compatibility | Yes: Native Kafka-compatible interface [14]         | No: Requires Kafka on MSK for compatibility [9]   | No: Requires Kafka on Dataproc [13]            |
 | Data Retention      | 1–7 days (standard); 90 days (Premium) [14]         | 24 hours (default); up to 365 days (extended) [9] | 7 days (configurable up to 31 days) [13]       |
-| Replay Support      | Yes: Consumer groups with offset management [14]    | Yes: Sequence number-based replay [9]             | Yes: Snapshot + seek [13]                      |
+| Replay Support      | Yes: Consumer groups with offset management [14]    | Yes: Sequence number-based replay [9]             | Yes: Snapshot and seek [13]                    |
 | Message Size        | 1MB per event [14]                                  | 1MB per record [9]                                | 10MB per message [13]                          |
 
 ### Integration Options
@@ -300,11 +300,11 @@ High-volume streaming platforms are distinct from messaging and event routing se
 
 ### Pricing Model
 
-|                 | Event Hubs                                                               | AWS Kinesis                               | GCP Pub/Sub                            |
-| --------------- | ------------------------------------------------------------------------ | ----------------------------------------- | -------------------------------------- |
-| Model           | Throughput Units (Standard) or Processing Units (Premium) + storage [14] | Per shard-hour + per PUT payload unit [9] | Per GB ingested and delivered [13]     |
-| Scaling Model   | Manual TU scaling or Auto-inflate [14]                                   | Manual shard splitting/merging [9]        | Fully auto-scaled (no shards/TUs) [13] |
-| Kafka Advantage | Reuse Kafka clients without cluster management overhead [14]             | Must run separate MSK cluster [9]         | Must run separate Kafka cluster [13]   |
+|                 | Event Hubs                                                                 | AWS Kinesis                                 | GCP Pub/Sub                            |
+| --------------- | -------------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------- |
+| Model           | Throughput Units (Standard) or Processing Units (Premium) and storage [14] | Per shard-hour and per PUT payload unit [9] | Per GB ingested and delivered [13]     |
+| Scaling Model   | Manual TU scaling or Auto-inflate [14]                                     | Manual shard splitting/merging [9]          | Fully auto-scaled (no shards/TUs) [13] |
+| Kafka Advantage | Reuse Kafka clients without cluster management overhead [14]               | Must run separate MSK cluster [9]           | Must run separate Kafka cluster [13]   |
 
 ### Strengths & Weaknesses
 
@@ -321,14 +321,14 @@ Both Azure Event Hubs and Amazon Kinesis scale to millions of events per second,
 
 ## Summary Matrix
 
-| Azure Service     | AWS Equivalent               | GCP Equivalent          | Strategic Fit                                      |
-| ----------------- | ---------------------------- | ----------------------- | -------------------------------------------------- |
-| Azure Functions   | Lambda                       | Cloud Functions         | Best ROI on existing Microsoft licenses [8]        |
-| Durable Functions | Step Functions (Standard)    | Workflows               | Code-centric stateful orchestration [8]            |
-| Logic Apps        | Step Functions + EventBridge | Application Integration | Visual low-code business process automation [8]    |
-| Service Bus       | SQS + SNS                    | Pub/Sub                 | Financial and transactional message integrity [11] |
-| Event Grid        | EventBridge                  | Eventarc                | Reactive Azure resource event routing [12]         |
-| Event Hubs        | Kinesis Data Streams         | Pub/Sub (streaming)     | Big data ingestion; Kafka migration path [14]      |
+| Azure Service     | AWS Equivalent                 | GCP Equivalent          | Strategic Fit                                      |
+| ----------------- | ------------------------------ | ----------------------- | -------------------------------------------------- |
+| Azure Functions   | Lambda                         | Cloud Functions         | Best ROI on existing Microsoft licenses [8]        |
+| Durable Functions | Step Functions (Standard)      | Workflows               | Code-centric stateful orchestration [8]            |
+| Logic Apps        | Step Functions and EventBridge | Application Integration | Visual low-code business process automation [8]    |
+| Service Bus       | SQS and SNS                    | Pub/Sub                 | Financial and transactional message integrity [11] |
+| Event Grid        | EventBridge                    | Eventarc                | Reactive Azure resource event routing [12]         |
+| Event Hubs        | Kinesis Data Streams           | Pub/Sub (streaming)     | Big data ingestion; Kafka migration path [14]      |
 
 ### Architectural Recommendation Summary
 
