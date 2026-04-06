@@ -57,7 +57,7 @@ While AWS Lambda's Graviton4 ARM-based instances offer superior raw price-perfor
 
 ### Overview
 
-Without robust orchestration, distributed architectures risk becoming "distributed monoliths" — tightly coupled systems with no state visibility that fail silently [8]. Durable Functions and its equivalents solve this by managing retries, checkpointing, and long-running workflow state.
+Without robust orchestration, distributed architectures risk becoming "distributed monoliths", tightly coupled systems with no state visibility that fail silently [8]. Durable Functions and its equivalents solve this by managing retries, checkpointing, and long-running workflow state.
 
 - Azure Durable Functions: A code-centric extension of Azure Functions for defining stateful workflows in C#, Python, JavaScript, or Java. Supports chaining, fan-out/fan-in, and human interaction patterns [8].
 - AWS Step Functions: A visual and code-configurable state machine service using Amazon States Language (ASL). Two modes: Express (short-lived, high-volume) and Standard (long-running, exactly-once) [1].
@@ -102,7 +102,7 @@ Without robust orchestration, distributed architectures risk becoming "distribut
 
 ### Narrative Analysis
 
-Durable Functions provides tools for complex orchestration patterns — including chaining, fan-out/fan-in, and actor-model workflows — entirely in familiar programming languages, without requiring developers to learn a separate DSL [8]. These tools provide the critical reliability layer by managing retries and checkpoints, ensuring that complex microservices chains remain resilient and observable [8]. AWS Step Functions offers a compelling alternative for teams that prefer visual workflow design and need broad AWS service integrations without writing glue Lambda functions. GCP Workflows is the simplest of the three but trades expressiveness for ease of use.
+Durable Functions provides tools for complex orchestration patterns, including chaining, fan-out/fan-in, and actor-model workflows, entirely in familiar programming languages, without requiring developers to learn a separate DSL [8]. These tools provide the critical reliability layer by managing retries and checkpoints, ensuring that complex microservices chains remain resilient and observable [8]. AWS Step Functions offers a compelling alternative for teams that prefer visual workflow design and need broad AWS service integrations without writing glue Lambda functions. GCP Workflows is the simplest of the three but trades expressiveness for ease of use.
 
 ---
 
@@ -110,7 +110,7 @@ Durable Functions provides tools for complex orchestration patterns — includin
 
 ### Overview
 
-Logic Apps and its equivalents target business process automation — connecting SaaS applications, on-premises systems, and cloud services via a visual, low-code interface.
+Logic Apps and its equivalents target business process automation, connecting SaaS applications, on-premises systems, and cloud services via a visual, low-code interface.
 
 - Azure Logic Apps: A visual integration platform with 200+ pre-built connectors to SaaS and enterprise systems. The gold standard for business process automation in the Azure ecosystem [8].
 - AWS Step Functions (Standard Workflows): When paired with EventBridge and pre-built integrations, Step Functions serves as AWS's closest equivalent to Logic Apps for business workflow automation [1].
@@ -154,7 +154,7 @@ Logic Apps and its equivalents target business process automation — connecting
 
 ### Narrative Analysis
 
-Azure Logic Apps serves as the gold standard for business process automation, providing a visual designer and 200+ connectors to bridge SaaS and on-premises systems [8]. Neither AWS Step Functions nor GCP Application Integration offers an equivalent breadth of pre-built connectors or on-premises integration capability. For organizations that need non-developer users to build and manage workflows — particularly in government or enterprise environments with SAP, Dynamics 365, or Salesforce — Logic Apps remains the clear leader.
+Azure Logic Apps serves as the gold standard for business process automation, providing a visual designer and 200+ connectors to bridge SaaS and on-premises systems [8]. Neither AWS Step Functions nor GCP Application Integration offers an equivalent breadth of pre-built connectors or on-premises integration capability. For organizations that need non-developer users to build and manage workflows, particularly in government or enterprise environments with SAP, Dynamics 365, or Salesforce, Logic Apps remains the clear leader.
 
 ---
 
@@ -208,7 +208,7 @@ Architects must distinguish between messages (intent-based, high-value, requirin
 
 ### Narrative Analysis
 
-Service Bus is the preferred choice for financial transactions and order processing [11]. Its support for exactly-once processing via sessions and native dead-lettering ensures that business-critical data is handled with the highest integrity [11]. AWS SQS and SNS together approximate this capability but require separate services to be combined, and cross-queue transactions remain unsupported. GCP Pub/Sub is better classified as a high-throughput event streaming service than a transactional message broker — its lack of native transaction scope makes it less suitable for order-of-record scenarios [13].
+Service Bus is the preferred choice for financial transactions and order processing [11]. Its support for exactly-once processing via sessions and native dead-lettering ensures that business-critical data is handled with the highest integrity [11]. AWS SQS and SNS together approximate this capability but require separate services to be combined, and cross-queue transactions remain unsupported. GCP Pub/Sub is better classified as a high-throughput event streaming service than a transactional message broker, its lack of native transaction scope makes it less suitable for order-of-record scenarios [13].
 
 ---
 
@@ -216,7 +216,7 @@ Service Bus is the preferred choice for financial transactions and order process
 
 ### Overview
 
-Event routers operate on the "Something Happened" paradigm — they distribute facts about state changes to interested subscribers. They form the central nervous system of reactive, event-driven architectures [4].
+Event routers operate on the "Something Happened" paradigm, they distribute facts about state changes to interested subscribers. They form the central nervous system of reactive, event-driven architectures [4].
 
 - Azure Event Grid: Microsoft's event routing service, built around CloudEvents and deeply integrated with Azure resource lifecycle events [12].
 - AWS EventBridge: Amazon's event bus service supporting custom events, SaaS partner events, and native AWS service events, with powerful filtering and transformation via EventBridge Pipes [12].
@@ -269,7 +269,7 @@ While Azure Event Grid offers a superior 99.99% SLA, it historically lacked in-f
 
 ### Overview
 
-High-volume streaming platforms are distinct from messaging and event routing services — they are designed to ingest millions of events per second with low latency for telemetry, IoT, and real-time analytics pipelines [9].
+High-volume streaming platforms are distinct from messaging and event routing services, they are designed to ingest millions of events per second with low latency for telemetry, IoT, and real-time analytics pipelines [9].
 
 - Azure Event Hubs: A partitioned, high-throughput ingestion service compatible with the Apache Kafka protocol. The backbone of real-time analytics on Azure [14].
 - AWS Kinesis Data Streams: Amazon's managed data stream service offering shard-based parallelism, replay, and tight integration with the AWS analytics stack [9].
